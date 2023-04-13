@@ -5,13 +5,23 @@ import java.util.HashMap;
 
 public class BankBuilder {
 
-    private Map<Currency, Float> exchangeRate;
-    private final Currency pivotCurrency;
-    public BankBuilder(Currency pivotCurrency){
+    private Map<Currency, Double> exchangeRate;
+    private Currency pivotCurrency;
+
+    public void setExchangeRate(Map<Currency, Double> exchangeRate){
+        this.exchangeRate = exchangeRate;
+    }
+    public void setPivotCurrency(Currency pivotCurrency){
         this.pivotCurrency = pivotCurrency;
     }
 
-    public Currency getPivotCurrency(){
-        return this.pivotCurrency;
+    public Bank build(){
+        Map<String, Double> exchangeRates = new HashMap<String, Double>();
+        for (var rate : exchangeRate.entrySet()){
+            exchangeRates.put(pivotCurrency+"->"+rate.getKey(), rate.getValue());
+        }
+        Bank bank = new Bank(exchangeRates);
+
+        return bank;
     }
 }
