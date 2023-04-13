@@ -22,3 +22,25 @@ Given a currency and the name of the currency we want to convert
 When we want to evaluate client portfolios
 Then we are able to convert money in any other currency
 ```
+
+
+#### Correction
+### Define Pivot Currency
+```gherkin
+- Pour tout taux de change  : port de la devise/pivot
+- DP => obligatoire + immuable
+- ER : taux de change + devise destination
+```
+
+### Add an exchange rate
+```gherkin
+- pas 2 taux pour une même devise
+- pas de ER avec devise Pivot
+```
+
+### Convert a Money
+```gherkin
+- Pas ER aved devise => Erreur de la banque sauf devise -> devise
+- Round tripping 2 devises => 1% montant initial
+- Round tripping 1 devise=> égalité stricte
+```
